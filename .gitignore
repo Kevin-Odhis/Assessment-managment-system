@@ -1,0 +1,15 @@
+# Ignore compiled binaries
+*.exe
+*.o
+*.out
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore temporary or generated files
+*.tmp
+*.csv
+
+# Ignore image files (unless needed)
+*.jpg
+*.png
