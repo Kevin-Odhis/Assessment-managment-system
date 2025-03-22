@@ -51,6 +51,9 @@ void Exam_Management() {
                 std::string name;
                 std::cout << "Enter subject short name: ";
                 std::cin >> name;
+                for(auto&ch:name){
+                    ch=std::toupper(ch);
+                }
                 grade8.Add_Scores_For_Student(name);
                 break;
             }

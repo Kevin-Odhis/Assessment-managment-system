@@ -6,6 +6,7 @@
 #include <memory>
 #include <fstream>
 #include <sstream>
+#include<algorithm>
 
 class School {
 private:

@@ -18,9 +18,9 @@ void School::Read_File(){
             myfile>>line;
             std::stringstream ss(line);
             std::string name;
-            std::getline(ss,name,',');//skip name
+            std::getline(ss,name,',');//skip NAME
             while(std::getline(ss,name,',')){
-                if(!name.empty()){
+                if((!name.empty())&&(name!="TOTAL"&&name!="LVL")){
                     subjects.emplace_back(name,name);
                 }
             }
@@ -37,7 +37,7 @@ void School::Read_File(){
                 for(auto& sub:subjects){
                     std::string score;
                     std::getline(ss_line,score,',');
-                    if(!score.empty()){
+                    if(!score.empty()&&std::all_of(score.begin(),score.end(),::isdigit)){
                         double mark=std::stod(score);
                         if(mark<=100){//ignore total marks
                             learner->Add_Score(sub.Short_Name,mark);
@@ -60,14 +60,20 @@ void School::Read_File(){
         }else{
             size_t n{1};
             for(const auto& stud:Students){
-                std::cout<<n<<". "<<stud->Get_Name()<<"-> Total marks: "<<stud->Total_Marks()<<"\n";
+                std::cout<<n<<". "<<stud->Get_Name()<<"-> Total marks: "<<stud->Total_Marks()<<stud->Get_Level()<<"\n";
                 ++n;
             }
         }
     }
     void School::Add_Scores_For_Student(const std::string& sub){
         for(const auto& learner:Students){
-            learner->Add_Score(sub);
+            auto All=learner->Get_Subjects();
+            for(const auto l_area:All){
+                if(l_area.first==sub&&l_area.second==0){//Skip learner if the Subject has a score
+                    learner->Add_Score(sub);
+                }
+            }
+            //learner->Add_Score(sub);
         }
     
     }
@@ -101,13 +107,13 @@ void School::Read_File(){
             for(const auto& item:subjects){
                 myfile<<item.Short_Name<<",";
             }
-            myfile<<"TOTAL"<<","<<"\n";
+            myfile<<"TOTAL"<<","<<"LVL"<<","<<"\n";
             for(const auto& stude:Students){
                 myfile<<stude->Get_Name()<<",";
                 for(const auto& sub:stude->Get_Subjects()){
                     myfile<<sub.second<<",";
                 }
-                myfile<<stude->Total_Marks()<<","<<"\n";
+                myfile<<stude->Total_Marks()<<","<<stude->Get_Level()<<","<<"\n";
             }
             myfile.close();
         }else{

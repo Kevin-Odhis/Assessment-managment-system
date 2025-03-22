@@ -20,6 +20,7 @@ public:
     std::string Get_Name() const { return Name; }
     void Add_Score(const std::string& course);
     void Add_Score(const std::string& course, double mar);
-    auto Get_Subjects() const { return Courses; }
+    std::unordered_map<std::string, double> Get_Subjects() const { return Courses; }
+    std::string Get_Level();
 };
 #endif
