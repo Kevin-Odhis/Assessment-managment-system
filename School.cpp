@@ -7,8 +7,8 @@ void School::Display_Subjects()const{
         size_t n{1};
         for(const auto& item:subjects){
             std::cout<<n<<". "<<item.Subject<<"- "<<item.Short_Name<<"\n";
+            ++n;
         }
-        ++n;
     }
 }
 void School::Read_File(){
