@@ -10,7 +10,7 @@ int main() {
 
 char menu() {
     std::cout << "Press:\n1. Register student\n2. Add subjects\n3. Add marks\n4. Save to file\n5. To upload from file\n"
-    "6. To view studeents\n0. Exit\n-> ";
+    "6. To view students\n0. Exit\n-> ";
     char op;
     while (!(std::cin >> op)) {
         std::cout << "Invalid input, try again: ";
@@ -58,8 +58,16 @@ void Exam_Management() {
                 break;
             }
             case '4':
-                grade8.Write_File();
+            {
+                std::string filename;
+                std::cout<<"Enter the name of the file to save:->";
+                std::cin.ignore();
+                std::getline(std::cin,filename);
+                std::cout<<"saving to file "<<filename<<"\n";
+                grade8.Write_File(filename);
+                std::cout<<"Data saved to file successfully\n";
                 break;
+            }
             case '0':
                 running = false;
                 break;

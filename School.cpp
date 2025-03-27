@@ -100,8 +100,10 @@ void School::Read_File(){
         }
     }
     
-    void School::Write_File(){
-        std::fstream myfile("Mid-Term 1 Result.csv",std::ios::out);
+    void School::Write_File(const std::string& Name){
+        std::string name;
+        name=Name+".csv";
+        std::fstream myfile(name,std::ios::out);
         if(myfile.is_open()){
             myfile<<"NAME"<<",";
             for(const auto& item:subjects){

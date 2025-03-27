@@ -16,7 +16,7 @@ public:
     void Add_Student(const std::string& name, const std::string& grade);
     void Add_School_Subjects(const std::string& subj, const std::string& s_sub);
     std::vector<Subjects> Get_Subjects() const { return subjects; }
-    void Write_File();
+    void Write_File(const std::string& Name);
     void Read_File();
     void Display_Students() const;
     void Add_Scores_For_Student(const std::string& sub);
